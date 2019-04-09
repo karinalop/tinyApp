@@ -1,0 +1,11 @@
+{
+  "name": "tinyapp",
+  "version": "1.0.0",
+  "description": "A full stack web app built with Node and Express tha allows users to shorten lon URLs (a la bit.ly)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Karina Lopez",
+  "license": "ISC"
+}
