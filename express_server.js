@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 var PORT = 8080; // default port 8080
 
+// set the view engine to ejs
 app.set("view engine", "ejs");
 
 var urlDatabase = {
@@ -23,4 +24,9 @@ app.get("/urls.json", (req, res) => {
 
 app.get("/hello", (req, res) => {
   res.send("<html><body>Hello <b>World</b></body></html>\n");
+});
+
+app.get("/urls", (req, res) => {
+  let templateVars = { urls: urlDatabase };
+  res.render("urls_index", templateVars);
 });
