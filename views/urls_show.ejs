@@ -13,8 +13,14 @@
     <% include ./partials/_header %>
   </header>
     <!-- Add EJS code here -->
-    <%= shortURL %>
-    <li>shortURL - <%= shortURL %> </li>
-    <li>longURL - <%= longURL %> </li>
+    <!-- <%= shortURL %> -->
+    <h3> ShortURL - <%= shortURL %> <h3>
+    <!-- <li>longURL - <%= longURL %> </li> -->
+
+    <form method="POST" action="/urls/<%= shortURL %>">
+      <input type="text" placeholder="<%= longURL %>" name="longURL">
+      <button type="submit">Update</button>
+    </form>
+
     </body>
 </html>

@@ -56,6 +56,8 @@ app.get("/urls/:shortURL", (req, res) => {
   res.render("urls_show", templateVars);
 });
 
+
+// Adds new shortURL:longURL pair given longURL
 app.post("/urls", (req, res) => {
   console.log(req.body);  // Log the POST request body to the console
   const shortURL = generateRandomString();
@@ -83,11 +85,23 @@ app.get("/u/:shortURL", (req, res) => {
 
 });
 
+// deletes a a per key: property from urlDatabase given the shortURL
+
 app.post("/urls/:shortURL/delete", (req, res) =>{
   //console.log("got into delete route");
   //console.log(req.params.shortURL);
   delete urlDatabase[req.params.shortURL];
   res.redirect("/urls");
+});
+
+//Update the longURL in the urlDatabase given the shortURL and the new longURL
+app.post("/urls/:shortURL", (req,res) => {
+  //console.log(req.params);
+  //console.log(req.body);
+  urlDatabase[req.params.shortURL] = req.body.longURL;
+  console.log(urlDatabase);
+  res.redirect(`/urls/${req.params.shortURL}`);
+
 });
 
 
