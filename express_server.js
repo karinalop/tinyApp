@@ -5,10 +5,25 @@ var PORT = 8080; // default port 8080
 // set the view engine to ejs
 app.set("view engine", "ejs");
 
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({extended: true}));
+
+
 var urlDatabase = {
   "b2xVn2": "http://www.lighthouselabs.ca",
   "9sm5xK": "http://www.google.com"
 };
+//------------------------------------------
+function generateRandomString() {
+var ramdom = 6; //length of the string
+var text = "";
+var possible = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+for (var i = 0; i < 6; i++) {
+text += possible.charAt(Math.floor(Math.random() * 7));
+}
+return text;
+}
+//---------------------------------------------------------
 
 app.get("/", (req, res) => {
   res.send("Hello!");
@@ -40,3 +55,11 @@ app.get("/urls/:shortURL", (req, res) => {
   let templateVars = { shortURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL]};
   res.render("urls_show", templateVars);
 });
+
+app.post("/urls", (req, res) => {
+  console.log(req.body);  // Log the POST request body to the console
+  res.send("Ok");         // Respond with 'Ok' (we will replace this)
+});
+
+
+
