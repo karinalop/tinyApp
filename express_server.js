@@ -46,7 +46,7 @@ app.get("/urls", (req, res) => {
   res.render("urls_index", templateVars);
 });
 
-
+//Display page
 app.get("/urls/new", (req, res) => {
   res.render("urls_new");
 });
@@ -58,8 +58,36 @@ app.get("/urls/:shortURL", (req, res) => {
 
 app.post("/urls", (req, res) => {
   console.log(req.body);  // Log the POST request body to the console
-  res.send("Ok");         // Respond with 'Ok' (we will replace this)
+  const shortURL = generateRandomString();
+  const longURL = req.body.longURL;
+  urlDatabase[shortURL] = longURL; //Add new pair of key:value to urlDatabase
+  console.log(urlDatabase);
+  res.redirect("/u/:" + shortURL);
 });
 
+//redirects to longURL given a ShortURL
+app.get("/u/:shortURL", (req, res) => {
+
+  //console.log(req.params);
+
+  shortURL = req.params.shortURL;
+  //console.log(shortURL);
+
+  const longURL =  urlDatabase[shortURL];
+  if(longURL){
+    res.redirect(longURL);
+  }
+  else{
+   res.status(400).send("the shortURL dosent exist");
+  }
+
+});
+
+app.post("/urls/:shortURL/delete", (req, res) =>{
+  //console.log("got into delete route");
+  //console.log(req.params.shortURL);
+  delete urlDatabase[req.params.shortURL];
+  res.redirect("/urls");
+});
 
 

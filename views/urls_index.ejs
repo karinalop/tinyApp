@@ -14,7 +14,10 @@
     </header>
     <!-- Add EJS code here -->
     <% for(let key in urls){%>
-    <li><%= key %> - <%= urls[key] %> </li>
+
+    <form method="POST" action="/urls/<%= key %>/delete"><li><%= key %> - <%= urls[key] %> <button type="submit">Delete</button> </form>
+    </li>
+
     <% }; %>
 </body>
 </html>
