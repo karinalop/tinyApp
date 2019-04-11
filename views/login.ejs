@@ -9,18 +9,15 @@
   <title>TinyApp</title>
 </head>
 <body style="font-size:20px; padding:50px;">
-    <header>
-      <% include partials/_header %>
-    </header>
-    <!-- Add EJS code here -->
-    <% for(let key in urls){%>
+  <header>
+    <% include partials/_header %>
+  </header>
 
-    <form method="POST" action="/urls/<%= key %>/delete">
-        <li><%= key %> - <%= urls[key] %>
-        <a href="/urls/<%= key %>">Edit</a>
-        <button type="submit" class= "btn btn-primary">Delete</button> </form>
-      </li>
 
-    <% }; %>
-</body>
+    <form method="POST" action="/login">
+      <input type="email" placeholder="name@domain.com" name="email"><br>
+      <input type="password" placeholder="type your password" name="password"><br>
+      <button type="submit" class= "btn btn-primary">Login</button> </form>
+
+    </body>
 </html>
