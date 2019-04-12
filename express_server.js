@@ -2,6 +2,8 @@ var express = require("express");
 var app = express();
 var PORT = 8080; // default port 8080
 
+const bcrypt = require('bcrypt');
+
 
 
 // set the view engine to ejs
@@ -35,11 +37,13 @@ const users = {
     email: "user2@example.com",
     password: "dishwasher-funk"
   },
+
   "karina": {
     id: "karina",
     email: "karina@gmail.com",
-    password: "lopez"
+    password: '$2b$10$JkCPZyVqH/hpQcHTu7vRIOzfm5ru4cQbbpSv3kTzx4jLmTecDZvIy'
   }
+
 
 }
 
@@ -231,7 +235,8 @@ app.post("/login", (req, res) =>{
       return;
     }
 
-    if(users[userId].password === req.body.password){
+    //users[userId].password === req.body.password
+    if(bcrypt.compareSync(req.body.password, users[userId].password)){
       res.cookie("user_id",userId);
       res.redirect("/urls");
     }
@@ -272,11 +277,14 @@ app.post("/register", (req, res) =>{
   //console.log(req.body.email);
   //console.log(req.body.password);
   const newId = generateRandomString();
+  const password = req.body.password; // found in the req.params object
+  const hashedPassword = bcrypt.hashSync(password, 10);
   const newUser = {'id': newId,
                   'email': req.body.email,
-                  'password': req.body.password };
+                  'password': hashedPassword };
   users[newId] = newUser;
   res.cookie("user_id",newId);
+  console.log(newUser);
   res.redirect("/urls");
 
 });
