@@ -13,6 +13,7 @@
       <% include partials/_header %>
     </header>
     <!-- Add EJS code here -->
+    <a href="/urls/new">Create a new Short URL</a>
     <% for(let key in urls){%>
 
     <form method="POST" action="/urls/<%= key %>/delete">
