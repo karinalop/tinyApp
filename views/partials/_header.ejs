@@ -4,11 +4,14 @@
   <a href="/login">Login</a> |
   <a href="/register">Register</a>
 
+
 <%} else {%>
 
   <h4>Loged in as: <%=user.email%> </h4>
+
   <form method="POST" action="/logout">
-  <button type="submit" class= "btn btn-primary">Logout</button>
+  <button type="submit" class= "btn btn-primary">Logout</button><br>
+  <a href="/urls">Check your list of URLs</a>
 </form>
 
 <%}%>

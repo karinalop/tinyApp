@@ -170,7 +170,6 @@ app.get("/u/:shortURL", (req, res) => {
     return;
   }
 
-
   const longURL = urlDatabase[short].longURL;
   if(longURL){
     res.redirect(longURL);
@@ -202,7 +201,7 @@ app.post("/urls/:shortURL", (req,res) => {
 
   if(req.session.user_id === urlDatabase[short].userID){
     urlDatabase[short].longURL = req.body.longURL;
-    res.redirect(`/urls/${shortURL}`);
+    res.redirect(`/urls/`);
     return
     }else{
       res.status(403).send("You have no access to delete this url");
