@@ -50,12 +50,12 @@ const users = {
 
 //------------------------------------------
 function generateRandomString() {
-var text = "";
-var possible = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-for (var i = 0; i < 6; i++) {
-text += possible.charAt(Math.floor(Math.random() * 7));
-}
-return text;
+  var text = "";
+  var possible = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  for (var i = 0; i < 6; i++) {
+  text += possible.charAt(Math.floor(Math.random() * 7));
+  }
+  return text;
 }
 
 //-------------------------------
@@ -169,7 +169,6 @@ app.get("/u/:shortURL", (req, res) => {
     res.status(400).send("this shortURL does not exist");
     return;
   }
-
   const longURL = urlDatabase[short].longURL;
   if(longURL){
     res.redirect(longURL);
