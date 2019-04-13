@@ -14,11 +14,12 @@
   </header>
     <!-- Add EJS code here -->
     <!-- <%= shortURL %> -->
-    <h3> ShortURL - <%= shortURL %> <h3>
+    <h4> URL - <%= longURL %> <h4>
     <!-- <li>longURL - <%= longURL %> </li> -->
 
     <form method="POST" action="/urls/<%= shortURL %>">
-      <h6> New long URL</h6><input type="text" placeholder="<%= longURL %>" name="longURL">
+
+      <h6> New URL</h6><input type="text" placeholder="<%= longURL %>" name="longURL">
       <button type="submit" class= "btn btn-primary">Update</button>
     </form>
 
